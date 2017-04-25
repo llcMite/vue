@@ -1,0 +1,96 @@
+v-on 绑定事件
+v-bind 绑定属性
+:class="{active:off}" 绑定class
+@keyup.13=''  绑定事件
+自定义指令： 
+
+   directive:{}
+   钩子函数：（详情参考官网）
+     updata 被绑定元素所在模板更新时调用
+     钩子函数中参数：
+         el:指令所绑定的元素，可以用来直接操作dom
+         binding：一个对象
+            value:指令的绑定值
+这里自定义一个focus指令：
+   directive:{
+      'focus':{  //指令的名称
+         update(el,binding){
+           if(binding.value){
+              el.focus();
+           }
+         }
+      }
+   }
+
+调用方法：v-focus=""
+
+在{{}}可以进行运算，不可以带分号
+
+任务：
+1、使用esc退出取消保存，回到原来的值
+2、enter时和失去焦点是保存修改
+3、统计未完成的任务
+
+计算属性：
+    computed:{
+       noCheckedLength:function(){
+         return this.list.filter(function(item){
+           return !item.isChecked
+         }).length
+       }
+    }
+	调用方法：
+	{{noCheckLength}}
+
+
+watch深度监控数据：
+    使用本地存储模拟后台
+
+    watch:{
+      //浅监控，不能监控内层的变化
+      list:function(){  //监控list,当list发生变化时触发函数
+        
+      }
+      //深度监控
+      list；{
+        header:function(){
+
+        },
+        depp:true
+      }
+    }
+
+利用hash过滤数据：
+ 原生获取哈希值
+   window.addEventListener('hashchange',function(){
+      var hash=window.loaction.hash
+   })
+
+  添加计算属性：
+    filterList:function(){
+      var filter={
+        all:function(list){
+         return list
+        },
+        finished:function(){
+         return list.filter(function(item){
+            return item.isChecked;
+         })
+        },
+        unfinished:function(){
+          return list.filter(function(item){
+            return !item.isChecked;
+          })
+        }
+      }
+      找到过滤后的函数就返回过滤后的数据，没有就返回list
+      return filter[this.visibility] ? filter[this.visibility](list):list;
+    }
+
+   练习：使用哈希进行数据过滤，选中的以及未选中的
+
+组件：
+   复用
+   便于维护
+   
+
