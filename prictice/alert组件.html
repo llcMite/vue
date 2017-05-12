@@ -116,7 +116,7 @@
 
 	<body>
 		<div id="app">
-			<m-alert mtype='info' mtitle='正常提示信息' :closeable='false' iconname='info'><m-alert/>
+			<m-alert mtype='info' mtitle='正常提示信息' :closeable='true' iconname='info'><m-alert/>
 		</div>
 		<script>
 			/*
@@ -167,7 +167,7 @@
 
             	},
             	template:`
-                   <div class="m-alert" :class='[classes]' style="style">
+                   <div class="m-alert m-alert-info"  style="style">
 						<slot name="iconTemp">
 							<i class="m-icon" :class='[iconClass]' ></i>
 						</slot>
