@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title></title>
-<script src="vue.js"></script>
+<script src="../vue.js"></script>
 </head>
 <body>
 <div id="box">
@@ -14,17 +14,22 @@
 </body>
 <script>
 
-var data={'counter':0}
+
 Vue.component('hello',{
-	props:['message'],
-	template:'<button>{{message}}</button>',
+	props:{
+		message:{
+			type:String,
+			default:'显示'
+		}
+	},
+	template:`<button>{{message}}</button>`,
 	
      })
 
 new Vue({
 	el:'#box',
 	data:{
-		message1:'hello'
+		message1:'hello word'
 	}
 })
 </script>
