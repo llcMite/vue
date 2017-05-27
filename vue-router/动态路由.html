@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>动态路由</title>
+<script src='../vue.js'></script>
+<script src='../vue-router.js'></script>
+</head>
+<body>
+    <div id="app">
+
+        <header-bar></header-bar>
+        <br>
+
+        <br>
+    	<router-link to='/user/bar'>bar</router-link>
+    	<router-link to='/user/foo'>foo</router-link>
+    	<router-view></router-view>
+    	<footer-bar></footer-bar>
+    </div>
+<script>
+	const user=Vue.extend({
+        template:`<div>
+        user{{$route.params.id}}
+        <router-link to='/user/posts'>posts</router-link>
+        <router-link to='/user/profile'>profile</router-link>
+        <router-view></router-view></div>`
+	});
+	const headerBar=Vue.extend({
+		template:`<div>我是头部</div>`
+	});
+	const footerBar=Vue.extend({
+		template:`<div>我是底部</div>`
+	})
+	const router=new VueRouter({
+		routes:[
+           {path:'/user',component:user,
+            children:[
+              {path:'posts',component:{template:`<h1>我是posts</h1>`} },
+              {path:'profile',component:{template:`<h1>我是profile</h1>`} }
+            ]
+       },
+
+		]
+	});
+	Vue.component('header-bar',headerBar);
+	const app=new Vue({
+		router,
+		components:{
+			'footer-bar':footerBar
+		}
+	}).$mount('#app');
+
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>路由动画</title>
+<script src='../vue.js'></script>
+<script src='../vue-router.js'></script>
+</head>
+<style>
+  /* Enter and leave animations can use different */
+/* durations and timing functions.              */
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active for <2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
+}
+</style>
+<body>
+    <div id="app">
+    	<router-link to='/index'>主页</router-link>
+    	<router-link to='/about'>关于</router-link>
+
+      <transition name='slide-fade'>
+    	<router-view></router-view>
+      </transition>
+      
+    </div>
+<script>
+	const index=Vue.extend({template:`<div>电网首页</div>`});
+	const about=Vue.extend({template:`<div>关于电网</div>`});
+    
+    const routes=[
+      // {path:'/',redirect:'/index'},
+      {path:'/',redirect:{name:'indexP'}},
+      {path:'/index',component:index,name:'indexP'},
+      {path:'/about',component:about}
+    ];
+
+    const router=new VueRouter({
+    	routes
+    });
+
+    var app=new Vue({
+    	router
+    }).$mount('#app');
+</script>
+</body>
+</html>
