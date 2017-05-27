@@ -1,0 +1,6 @@
+搭建开发环境：
+npm install vue-cli -g
+初始化项目
+vue init
+运行项目并且监听端口
+vue run dev
