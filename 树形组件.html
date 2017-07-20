@@ -1,0 +1,30 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+ <title>树形组件</title>
+</head>
+<script src='vue.js'></script>
+<body>
+	<div id='box'>
+       <vue-list :message='result'></vue-list>
+	</div>
+<script>
+ Vue.component('vue-list',{
+ 	props:{
+       message:{
+       	type:String,
+       	default:'操蛋'
+       }
+ 	},
+ 	template:`<h1>{{message}}</h1>`
+ });
+ new Vue({
+ 	el:'#box',
+ 	data:{
+ 		result:'到底哪里出问题啦'
+ 	}
+ })
+</script>
+</body>
+</html>
