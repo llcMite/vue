@@ -1,0 +1,12 @@
+搭建开发环境：
+npm install vue-cli -g
+初始化项目
+vue init
+运行项目并且监听端口
+vue run dev
+
+
+组件通信：
+    组件使用$emit(name,value)调用父组件的函数，并传递参数
+	name是自定义事件名，string
+	value 是要传递的参数

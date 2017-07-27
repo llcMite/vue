@@ -10,6 +10,7 @@ cd 项目
   
 启动项目：
    npm run dev
+   端口冲突：打开config,index.js找到8080，进行修改
    
 vux组件库
   官网 https://vue.li
@@ -34,8 +35,8 @@ vux组件库
    底部导航
 
 vux核心组件，布局组件-viewBox
-   import {viewBox} from 'vux'
-   import 'vux/src/style/reset/less'
+   import {ViewBox} from 'vux'
+   @import '~vux/src/styles/reset.less';
    在官网找到viewBox查看如何使用
      使用viewBox要做一些基础样式
 	   html,body{
@@ -62,13 +63,45 @@ xHeader 组件
 	 语言包设置
 	   npm install vux-loader --save-dev
 	   
-	 配置build/webpack.dev.conf.js
-	   const vuxLoader=require('vue-loader')
-	   
-	   baseWebpackConfig=vuxLoader.merge(baseWebpackConfig,{plugins:['vux-ui]})
+	在build/webpack.base.conf.js 文件进行配置
+
+    const vuxLoader = require('vux-loader')
+    const webpackConfig = 原来的module.exports
+ 
+      // 原来的 module.exports 代码赋值给变量 webpackConfig，
+ 
+      //即将原来的module.exports 改为 const webpackConfig
+      module.exports = vuxLoader.merge(webpackConfig, { plugins: ['vux-ui'] })
 	   
 	 https://www.npmjs.com/package/vuex-i18n
 	 
+   
+   
+  具名slot
+   将放在子组件里的不同html标签放在不同的位置
+   父组件在要分发的标签里添加 slot=”name名” 属性 子组件在对应分发的位置的slot标签里，添加name=”name名” 属性，
+   然后就会将对应的标签放在对应的位置了。
+
+Tabbar,TabbarItem 底部导航
+   
+Tab,TabItem tab切换，设置显示tab个数，设置.tab的宽度
+
+Scroler组件 注意用div包住，增加滚动回弹效果，设置往哪边回弹
+
+Swiper组件，轮播图  
+
+Marquee组件 ，跑马灯
+
+Panel组件 ，图文列表 ，这时可能会出现一些样式问题，所以这时要设置一些样式
+
+数据交互 - 接口
+   这里用jsonp
+   vue-jsonp
+   vue-resource 
+
+在这个函数里请求数据
+created(){
+}
    
    
    
