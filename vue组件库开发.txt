@@ -11,6 +11,8 @@ cd 项目
 启动项目：
    npm run dev
    端口冲突：打开config,index.js找到8080，进行修改
+   npm run build
+   打包项目
    
 vux组件库
   官网 https://vue.li
@@ -99,9 +101,17 @@ Panel组件 ，图文列表 ，这时可能会出现一些样式问题，所以这时要设置一些样式
    vue-jsonp
    vue-resource 
 
-在这个函数里请求数据
+在这个函数里请求数据，周期函数
 created(){
+   this.$jsonp().then()
 }
    
+vue-scroller 下拉刷新，上拉加载更多
+  npm i -s vue-scroller
+  import vueScoller from 'vue-scoller'
+  Vue.use(vueScoller)
    
+toast 提示组件
+
+this.$refs  把父组件的数据传给子组件
    
