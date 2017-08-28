@@ -1,0 +1,57 @@
+created:function(){}  一般在这里做ajax初始化请求
+
+directive:{
+ ‘domName’:{
+   bind:function(el){
+     //定义绑定的dom,在这里进行dom操作
+   },
+   updataf:function(){},
+   unbind:function(){}
+ }
+}
+
+计算属性：
+computed:{
+  b:function(){
+     return this.a+1
+  }
+
+}
+
+监听；
+watch:{
+  'data':function(newval,oldval){
+  }
+}
+
+添加动画,提供了一些钩子函数
+<transition name='fade'
+  v-on:before-enter="beforeEnter"
+  v-on:enter="enter"
+  v-on:after-enter="afterEnter"
+  v-on:enter-cancelled="enterCancelled"
+  v-on:before-leave="beforeLeave"
+  v-on:leave="leave"
+  v-on:after-leave="afterLeave"
+  v-on:leave-cancelled="leaveCancelled"
+></transition>
+.fade-enter-active,.fase-leave-active{
+  transition:opecity 0.5s ease-out;
+}
+.fade-enter,.fade-leave{
+  opecity；0；
+}
+
+自定义过滤器
+filters:{
+  'fil1':function(value){
+     return value+2
+   },
+}
+
+事件修饰符：
+常用的有：
+v-on:click.stop='doThis'  阻止事件冒泡
+v-on:click.prevent='onsubmit'  提交表单不重载页面
+v-on:click.prevent.stop='dothis' 可以串联
+v-on:keyup.13='submit' v-on:keyup.enter='submit' 监听enter键
